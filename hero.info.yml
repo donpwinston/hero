@@ -1,0 +1,4 @@
+name: "Hero"
+description: "An educational module"
+type: module
+core: 8.x

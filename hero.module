@@ -1,0 +1,35 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+function hero_theme($existing, $type, $theme, $path)
+{
+  return [
+    'hero_list' => [
+      'variables' => ['items' => [], 'subtitle' => '']
+    ]
+  ];
+}
+
+function hero_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  if ($form_id == 'node_article_form') {
+    $form['field_tags']['#access'] = false;
+    $form['title']['widget'][0]['value']['#title'] = t('Article Title');
+    $form['#validate'][] = 'hero_article_validate';
+  }
+}
+
+function hero_article_validate(&$form, FormStateInterface $form_state)
+{
+  $title = $form_state->getValue('title')[0]['value'];
+  if (is_numeric($title))
+    $form_state->setErrorByName('title', t('Title should not be a number'));
+}
+
+function hero_entity_presave(EntityInterface $entity)
+{
+  if ($entity->bundle() == 'article')
+    drupal_set_message('Saving article ' . $entity->get('title')->getValue()[0]['value']);
+}

@@ -1,0 +1,11 @@
+{{ attach_library('hero/hero-style') }}
+
+<h4>
+  {{ subtitle }}
+</h4>
+
+<ol>
+  {% for item in items %}
+    <li class="animated {{ random(['bounce', 'flash', 'rubberBand', 'shake', 'jello']) }}">{{ item.name }}</li>
+  {% endfor %}
+</ol>

@@ -1,0 +1,39 @@
+hero.herolist:
+  path: "/hero-list"
+  defaults:
+    _controller: '\Drupal\hero\Controller\HeroController::heroList'
+    _title: "Super Heroes List"
+  requirements:
+    _permission: "access content"
+
+hero.heroform:
+  path: "/hero-form"
+  defaults:
+    _form: '\Drupal\hero\Form\HeroForm'
+    _title: "Who Wil Win?"
+  requirements:
+    _permission: "can use hero form"
+
+hero.exampleform:
+  path: "/example-form"
+  defaults:
+    _form: '\Drupal\hero\Form\ExampleForm'
+    _title: "Showcase some elements"
+  requirements:
+    _permission: "access content"
+
+hero.ajaxheroform:
+  path: "/ajax-form"
+  defaults:
+    _form: '\Drupal\hero\Form\AjaxHeroForm'
+    _title: "Ajax hero form battle"
+  requirements:
+    _permission: "access content"
+
+hero.confighero:
+  path: "/admin/hero"
+  defaults:
+    _form: '\Drupal\hero\Form\HeroConfigForm'
+    _title: "Our admin config"
+  requirements:
+    _permission: "administer site configuration"
